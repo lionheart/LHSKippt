@@ -1,0 +1,420 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		371C43AB18DD39F100BB220C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371C43AA18DD39F100BB220C /* Foundation.framework */; };
+		371C43B018DD39F100BB220C /* LHSKippt.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 371C43AF18DD39F100BB220C /* LHSKippt.h */; };
+		371C43B218DD39F100BB220C /* LHSKippt.m in Sources */ = {isa = PBXBuildFile; fileRef = 371C43B118DD39F100BB220C /* LHSKippt.m */; };
+		371C43B918DD39F200BB220C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371C43B818DD39F200BB220C /* XCTest.framework */; };
+		371C43BA18DD39F200BB220C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371C43AA18DD39F100BB220C /* Foundation.framework */; };
+		371C43BC18DD39F200BB220C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371C43BB18DD39F200BB220C /* UIKit.framework */; };
+		371C43BF18DD39F200BB220C /* libLHSKippt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 371C43A718DD39F100BB220C /* libLHSKippt.a */; };
+		371C43C518DD39F200BB220C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 371C43C318DD39F200BB220C /* InfoPlist.strings */; };
+		371C43C718DD39F200BB220C /* LHSKipptTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 371C43C618DD39F200BB220C /* LHSKipptTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		371C43BD18DD39F200BB220C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 371C439F18DD39F100BB220C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 371C43A618DD39F100BB220C;
+			remoteInfo = LHSKippt;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		371C43A518DD39F100BB220C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				371C43B018DD39F100BB220C /* LHSKippt.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		371C43A718DD39F100BB220C /* libLHSKippt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLHSKippt.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		371C43AA18DD39F100BB220C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		371C43AE18DD39F100BB220C /* LHSKippt-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LHSKippt-Prefix.pch"; sourceTree = "<group>"; };
+		371C43AF18DD39F100BB220C /* LHSKippt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHSKippt.h; sourceTree = "<group>"; };
+		371C43B118DD39F100BB220C /* LHSKippt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHSKippt.m; sourceTree = "<group>"; };
+		371C43B718DD39F200BB220C /* LHSKipptTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LHSKipptTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		371C43B818DD39F200BB220C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		371C43BB18DD39F200BB220C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		371C43C218DD39F200BB220C /* LHSKipptTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LHSKipptTests-Info.plist"; sourceTree = "<group>"; };
+		371C43C418DD39F200BB220C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		371C43C618DD39F200BB220C /* LHSKipptTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHSKipptTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		371C43A418DD39F100BB220C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				371C43AB18DD39F100BB220C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		371C43B418DD39F200BB220C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				371C43B918DD39F200BB220C /* XCTest.framework in Frameworks */,
+				371C43BC18DD39F200BB220C /* UIKit.framework in Frameworks */,
+				371C43BF18DD39F200BB220C /* libLHSKippt.a in Frameworks */,
+				371C43BA18DD39F200BB220C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		371C439E18DD39F100BB220C = {
+			isa = PBXGroup;
+			children = (
+				371C43AC18DD39F100BB220C /* LHSKippt */,
+				371C43C018DD39F200BB220C /* LHSKipptTests */,
+				371C43A918DD39F100BB220C /* Frameworks */,
+				371C43A818DD39F100BB220C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		371C43A818DD39F100BB220C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				371C43A718DD39F100BB220C /* libLHSKippt.a */,
+				371C43B718DD39F200BB220C /* LHSKipptTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		371C43A918DD39F100BB220C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				371C43AA18DD39F100BB220C /* Foundation.framework */,
+				371C43B818DD39F200BB220C /* XCTest.framework */,
+				371C43BB18DD39F200BB220C /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		371C43AC18DD39F100BB220C /* LHSKippt */ = {
+			isa = PBXGroup;
+			children = (
+				371C43AF18DD39F100BB220C /* LHSKippt.h */,
+				371C43B118DD39F100BB220C /* LHSKippt.m */,
+				371C43AD18DD39F100BB220C /* Supporting Files */,
+			);
+			path = LHSKippt;
+			sourceTree = "<group>";
+		};
+		371C43AD18DD39F100BB220C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				371C43AE18DD39F100BB220C /* LHSKippt-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		371C43C018DD39F200BB220C /* LHSKipptTests */ = {
+			isa = PBXGroup;
+			children = (
+				371C43C618DD39F200BB220C /* LHSKipptTests.m */,
+				371C43C118DD39F200BB220C /* Supporting Files */,
+			);
+			path = LHSKipptTests;
+			sourceTree = "<group>";
+		};
+		371C43C118DD39F200BB220C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				371C43C218DD39F200BB220C /* LHSKipptTests-Info.plist */,
+				371C43C318DD39F200BB220C /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		371C43A618DD39F100BB220C /* LHSKippt */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 371C43CA18DD39F200BB220C /* Build configuration list for PBXNativeTarget "LHSKippt" */;
+			buildPhases = (
+				371C43A318DD39F100BB220C /* Sources */,
+				371C43A418DD39F100BB220C /* Frameworks */,
+				371C43A518DD39F100BB220C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LHSKippt;
+			productName = LHSKippt;
+			productReference = 371C43A718DD39F100BB220C /* libLHSKippt.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		371C43B618DD39F200BB220C /* LHSKipptTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 371C43CD18DD39F200BB220C /* Build configuration list for PBXNativeTarget "LHSKipptTests" */;
+			buildPhases = (
+				371C43B318DD39F200BB220C /* Sources */,
+				371C43B418DD39F200BB220C /* Frameworks */,
+				371C43B518DD39F200BB220C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				371C43BE18DD39F200BB220C /* PBXTargetDependency */,
+			);
+			name = LHSKipptTests;
+			productName = LHSKipptTests;
+			productReference = 371C43B718DD39F200BB220C /* LHSKipptTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		371C439F18DD39F100BB220C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Lionheart Software LLC";
+			};
+			buildConfigurationList = 371C43A218DD39F100BB220C /* Build configuration list for PBXProject "LHSKippt" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 371C439E18DD39F100BB220C;
+			productRefGroup = 371C43A818DD39F100BB220C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				371C43A618DD39F100BB220C /* LHSKippt */,
+				371C43B618DD39F200BB220C /* LHSKipptTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		371C43B518DD39F200BB220C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				371C43C518DD39F200BB220C /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		371C43A318DD39F100BB220C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				371C43B218DD39F100BB220C /* LHSKippt.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		371C43B318DD39F200BB220C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				371C43C718DD39F200BB220C /* LHSKipptTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		371C43BE18DD39F200BB220C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 371C43A618DD39F100BB220C /* LHSKippt */;
+			targetProxy = 371C43BD18DD39F200BB220C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		371C43C318DD39F200BB220C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				371C43C418DD39F200BB220C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		371C43C818DD39F200BB220C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		371C43C918DD39F200BB220C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		371C43CB18DD39F200BB220C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/LHSKippt.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LHSKippt/LHSKippt-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		371C43CC18DD39F200BB220C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/LHSKippt.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LHSKippt/LHSKippt-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		371C43CE18DD39F200BB220C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LHSKippt/LHSKippt-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "LHSKipptTests/LHSKipptTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		371C43CF18DD39F200BB220C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LHSKippt/LHSKippt-Prefix.pch";
+				INFOPLIST_FILE = "LHSKipptTests/LHSKipptTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		371C43A218DD39F100BB220C /* Build configuration list for PBXProject "LHSKippt" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				371C43C818DD39F200BB220C /* Debug */,
+				371C43C918DD39F200BB220C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		371C43CA18DD39F200BB220C /* Build configuration list for PBXNativeTarget "LHSKippt" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				371C43CB18DD39F200BB220C /* Debug */,
+				371C43CC18DD39F200BB220C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		371C43CD18DD39F200BB220C /* Build configuration list for PBXNativeTarget "LHSKipptTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				371C43CE18DD39F200BB220C /* Debug */,
+				371C43CF18DD39F200BB220C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 371C439F18DD39F100BB220C /* Project object */;
+}
