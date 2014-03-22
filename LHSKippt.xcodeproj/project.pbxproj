@@ -118,6 +118,7 @@
 		371C439F18DD39F100BB220C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = LHS;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Lionheart Software LLC";
 			};
