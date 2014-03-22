@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		371C43AB18DD39F100BB220C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371C43AA18DD39F100BB220C /* Foundation.framework */; };
-		371C43B018DD39F100BB220C /* LHSKippt.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 371C43AF18DD39F100BB220C /* LHSKippt.h */; };
-		371C43B218DD39F100BB220C /* LHSKippt.m in Sources */ = {isa = PBXBuildFile; fileRef = 371C43B118DD39F100BB220C /* LHSKippt.m */; };
+		371C43B018DD39F100BB220C /* LHSKipptClient.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 371C43AF18DD39F100BB220C /* LHSKipptClient.h */; };
+		371C43B218DD39F100BB220C /* LHSKipptClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 371C43B118DD39F100BB220C /* LHSKipptClient.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -19,7 +19,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				371C43B018DD39F100BB220C /* LHSKippt.h in CopyFiles */,
+				371C43B018DD39F100BB220C /* LHSKipptClient.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -29,8 +29,8 @@
 		371C43A718DD39F100BB220C /* libLHSKippt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLHSKippt.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		371C43AA18DD39F100BB220C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		371C43AE18DD39F100BB220C /* LHSKippt-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LHSKippt-Prefix.pch"; sourceTree = "<group>"; };
-		371C43AF18DD39F100BB220C /* LHSKippt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHSKippt.h; sourceTree = "<group>"; };
-		371C43B118DD39F100BB220C /* LHSKippt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHSKippt.m; sourceTree = "<group>"; };
+		371C43AF18DD39F100BB220C /* LHSKipptClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHSKipptClient.h; sourceTree = "<group>"; };
+		371C43B118DD39F100BB220C /* LHSKipptClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHSKipptClient.m; sourceTree = "<group>"; };
 		371C43B818DD39F200BB220C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		371C43BB18DD39F200BB220C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
@@ -77,8 +77,8 @@
 		371C43AC18DD39F100BB220C /* LHSKippt */ = {
 			isa = PBXGroup;
 			children = (
-				371C43AF18DD39F100BB220C /* LHSKippt.h */,
-				371C43B118DD39F100BB220C /* LHSKippt.m */,
+				371C43AF18DD39F100BB220C /* LHSKipptClient.h */,
+				371C43B118DD39F100BB220C /* LHSKipptClient.m */,
 				371C43AD18DD39F100BB220C /* Supporting Files */,
 			);
 			path = LHSKippt;
@@ -144,7 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				371C43B218DD39F100BB220C /* LHSKippt.m in Sources */,
+				371C43B218DD39F100BB220C /* LHSKipptClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

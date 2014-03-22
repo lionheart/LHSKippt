@@ -1,13 +1,15 @@
 //
-//  LHSKippt.m
+//  LHSKippt.h
 //  LHSKippt
 //
 //  Created by Dan Loewenherz on 3/21/14.
 //  Copyright (c) 2014 Lionheart Software LLC. All rights reserved.
 //
 
-#import "LHSKippt.h"
+#import <Foundation/Foundation.h>
 
-@implementation LHSKippt
+@interface LHSKipptClient : NSObject
+
++ (instancetype)sharedClient;
 
 @end
