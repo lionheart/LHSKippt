@@ -44,7 +44,7 @@ typedef NS_OPTIONS(NSUInteger, LHSKipptDataFilters) {
 - (void)accountWithSuccess:(LHSKipptEmptyBlock)success
                    failure:(LHSKipptErrorBlock)failure;
 
-typedef void (^LHSKipptClipsBlock)(NSArray *clips, NSUInteger total);
+typedef void (^LHSKipptClipsBlock)(NSArray *clips);
 - (void)clipsWithFilters:(LHSKipptDataFilters)filters
                    since:(NSDate *)since
                      url:(NSURL *)url
