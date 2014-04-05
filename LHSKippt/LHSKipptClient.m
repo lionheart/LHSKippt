@@ -40,11 +40,29 @@
     dispatch_once(&onceToken, ^{
         _sharedClient = [[LHSKipptClient alloc] init];
         
-        _sharedClient.session = [NSURLSession sessionWithConfiguration:nil
+        _sharedClient.session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
                                                                delegate:_sharedClient
-                                                          delegateQueue:[NSOperationQueue currentQueue]];
+                                                          delegateQueue:nil];
     });
     return _sharedClient;
+}
+
+#pragma Delegate methods
+
+-(void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential))completionHandler
+{
+    NSURLCredential *cred = [NSURLCredential credentialWithUser:@"chrisddm@gmail.com" password:@"12#Qwaszx" persistence:NSURLCredentialPersistenceNone];
+    completionHandler(NSURLSessionAuthChallengeUseCredential, cred);
+    NSLog(@"didReceiveChallenge");
+}
+
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
+didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
+ completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition,    NSURLCredential *credential))completionHandler
+{
+    NSURLCredential *cred = [NSURLCredential credentialWithUser:@"chrisddm@gmail.com" password:@"12#Qwaszx" persistence:NSURLCredentialPersistenceNone];
+        completionHandler(NSURLSessionAuthChallengeUseCredential, cred);
+     NSLog(@"didReceiveChallenge");
 }
 
 - (void)requestPath:(NSString *)path
@@ -52,9 +70,6 @@
          parameters:(NSDictionary *)parameters
             success:(LHSKipptGenericBlock)success
             failure:(LHSKipptErrorBlock)failure {
-    if (!failure) {
-        failure = ^(NSError *error) {};
-    }
 
     NSMutableArray *urlComponents = [NSMutableArray arrayWithObject:LHSKipptBaseURL];
     [urlComponents addObject:path];
@@ -73,6 +88,32 @@
 
     NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request
                                                  completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                     if (!error) {
+                                                         NSHTTPURLResponse *httpResp = (NSHTTPURLResponse*) response;
+                                                         if (httpResp.statusCode == 200) {
+                                                             // 3
+                                                             NSError *jsonError;
+                                                             
+                                                             // 2
+                                                             NSDictionary *response =
+                                                             [NSJSONSerialization JSONObjectWithData:data
+                                                                                             options:NSJSONReadingAllowFragments                                                                             
+                                                                                               error:&jsonError];
+                                                             if (!jsonError) {
+                                                                 success(response);
+                                                             }
+                                                             else {
+                                                                 failure (jsonError);
+                                                             }
+                                                             
+                                                         } else {
+                                                             // HANDLE BAD RESPONSE //
+                                                             failure(error);
+                                                         }
+                                                     } else {
+                                                         // ALWAYS HANDLE ERRORS :-] //
+                                                         failure(error);
+                                                     }
 
                                                  }];
     [task resume];
@@ -86,47 +127,35 @@
 
 #pragma mark - Authentication
 
-- (void)setUsername:(NSString *)username
-           password:(NSString *)password {
-    NSURLCredential *credential = [NSURLCredential credentialWithUser:username
-                                                             password:password
-                                                          persistence:NSURLCredentialPersistencePermanent];
-    
-    NSURLProtectionSpace *protectionSpace = [[NSURLProtectionSpace alloc] initWithHost:@"kippt.com"
-                                                                                  port:0
-                                                                              protocol:@"https"
-                                                                                 realm:nil
-                                                                  authenticationMethod:NSURLAuthenticationMethodHTTPBasic];
-    
-    [self.session.configuration.URLCredentialStorage setDefaultCredential:credential
-                                                       forProtectionSpace:protectionSpace];
-}
-
 - (void)loginWithUsername:(NSString *)username
                  password:(NSString *)password
-                  success:(LHSKipptEmptyBlock)success
+                  success:(LHSKipptGenericBlock)success
                   failure:(LHSKipptErrorBlock)failure {
     NSURLCredential *credential = [NSURLCredential credentialWithUser:username
                                                              password:password
-                                                          persistence:NSURLCredentialPersistencePermanent];
+                                                          persistence:NSURLCredentialPersistenceForSession];
     
     NSURLProtectionSpace *protectionSpace = [[NSURLProtectionSpace alloc] initWithHost:@"kippt.com"
                                                                                   port:0
                                                                               protocol:@"https"
-                                                                                 realm:nil
+                                                                                 realm:@"kippt.com"
                                                                   authenticationMethod:NSURLAuthenticationMethodHTTPBasic];
+    NSURLCredentialStorage *credentials = [NSURLCredentialStorage sharedCredentialStorage];
+    [credentials setDefaultCredential:credential forProtectionSpace:protectionSpace];
     
     [self.session.configuration.URLCredentialStorage setDefaultCredential:credential
                                                        forProtectionSpace:protectionSpace];
+    [ _session.configuration setURLCredentialStorage:credentials];
+    [self accountWithSuccess:success failure:failure];
 }
 
-- (void)accountWithSuccess:(LHSKipptEmptyBlock)success
+- (void)accountWithSuccess:(LHSKipptGenericBlock)success
                    failure:(LHSKipptErrorBlock)failure {
     [self requestPath:@"account/"
                method:@"GET"
            parameters:nil
               success:^(id JSON) {
-                  
+                  success(JSON);
               }
               failure:failure];
 }
@@ -164,6 +193,42 @@
 
               }
               failure:failure];
+}
+
+-(void)retreiveNoteText
+{
+    // 1
+//    NSString *fileApi =
+//    @"https://api-content.dropbox.com/1/files/dropbox";
+//    NSString *escapedPath = [_note.path
+//                             stringByAddingPercentEscapesUsingEncoding:
+//                             NSUTF8StringEncoding];
+    
+//    NSString *urlStr = [NSString stringWithFormat: @"%@/%@",
+//                        fileApi,escapedPath];
+    
+    NSURL *url = [NSURL URLWithString: @""];
+    
+    // 2
+    [[_session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (!error) {
+            NSHTTPURLResponse *httpResp = (NSHTTPURLResponse*) response;
+            if (httpResp.statusCode == 200) {
+                // 3
+            
+                dispatch_async(dispatch_get_main_queue(), ^{
+
+                });
+                
+            } else {
+                // HANDLE BAD RESPONSE //
+            }
+        } else {
+            // ALWAYS HANDLE ERRORS :-] //
+        }
+        // 4
+    }] resume];
 }
 
 @end

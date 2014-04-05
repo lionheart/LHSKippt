@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "LHSKipptClient.h"
+#import "XCTestCase+AsyncTesting.h"
 
 @interface LHSKippt_Tests : XCTestCase
 
@@ -25,13 +26,21 @@
 
 - (void)testExample {
     LHSKipptClient *kippt = [LHSKipptClient sharedClient];
-    [kippt setUsername:@"AAAA" password:@"BBBB"];
-    [kippt accountWithSuccess:^{
+    [kippt loginWithUsername:@"chrisddm@gmail.com" password:@"12#qwaszx" success:^(id response) {
         
-    }
-                      failure:^(NSError *error) {
-                          
-                      }];
+        NSString *username = [response objectForKey:@"username"];
+        if ([username isEqualToString:@"chrisddm"]) {
+              [self notify:XCTAsyncTestCaseStatusSucceeded];
+        }
+        else {
+              [self notify:XCTAsyncTestCaseStatusFailed];
+        }
+       
+    } failure:^(NSError *error) {
+         [self notify:XCTAsyncTestCaseStatusFailed];
+    }];
+    
+    [self waitForStatus: XCTAsyncTestCaseStatusSucceeded timeout:10];
 }
 
 @end

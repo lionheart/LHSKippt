@@ -33,15 +33,12 @@ typedef NS_OPTIONS(NSUInteger, LHSKipptDataFilters) {
             success:(LHSKipptGenericBlock)success
             failure:(LHSKipptErrorBlock)failure;
 
-- (void)setUsername:(NSString *)username
-           password:(NSString *)password;
-
 - (void)loginWithUsername:(NSString *)username
                  password:(NSString *)password
-                  success:(LHSKipptEmptyBlock)success
+                  success:(LHSKipptGenericBlock)success
                   failure:(LHSKipptErrorBlock)failure;
 
-- (void)accountWithSuccess:(LHSKipptEmptyBlock)success
+- (void)accountWithSuccess:(LHSKipptGenericBlock)success
                    failure:(LHSKipptErrorBlock)failure;
 
 typedef void (^LHSKipptClipsBlock)(NSArray *clips);
