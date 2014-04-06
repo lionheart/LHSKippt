@@ -21,7 +21,7 @@ typedef NS_OPTIONS(NSUInteger, LHSKipptDataFilters) {
     LHSKipptMediaFilter,
 };
 
-@interface LHSKipptClient : NSObject <NSURLConnectionDelegate, NSURLSessionDelegate>
+@interface LHSKipptClient : NSObject <NSURLConnectionDelegate, NSURLSessionDelegate,NSURLConnectionDelegate>
 
 @property (nonatomic, strong) NSURLSession *session;
 

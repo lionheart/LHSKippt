@@ -32,6 +32,13 @@
 
 @end
 
+@interface LHSKipptClient ()
+
+@property (nonatomic,strong) NSString *userName;
+@property (nonatomic,strong) NSString *password;
+
+@end
+
 @implementation LHSKipptClient
 
 + (instancetype)sharedClient {
@@ -51,8 +58,11 @@
 
 -(void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential))completionHandler
 {
-    NSURLCredential *cred = [NSURLCredential credentialWithUser:@"chrisddm@gmail.com" password:@"12#Qwaszx" persistence:NSURLCredentialPersistenceNone];
-    completionHandler(NSURLSessionAuthChallengeUseCredential, cred);
+    NSURLCredential *newCredential = [NSURLCredential credentialWithUser:self.userName
+                                                                password:self.password
+                                            persistence:NSURLCredentialPersistenceNone];
+    completionHandler(NSURLSessionAuthChallengeUseCredential, newCredential);
+    
     NSLog(@"didReceiveChallenge");
 }
 
@@ -60,10 +70,14 @@
 didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
  completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition,    NSURLCredential *credential))completionHandler
 {
-    NSURLCredential *cred = [NSURLCredential credentialWithUser:@"chrisddm@gmail.com" password:@"12#Qwaszx" persistence:NSURLCredentialPersistenceNone];
-        completionHandler(NSURLSessionAuthChallengeUseCredential, cred);
-     NSLog(@"didReceiveChallenge");
+    NSURLCredential *newCredential = [NSURLCredential credentialWithUser:self.userName
+                                                                password:self.password
+                                                             persistence:NSURLCredentialPersistenceNone];
+    completionHandler(NSURLSessionAuthChallengeUseCredential, newCredential);
+    
+    NSLog(@"didReceiveChallenge");
 }
+
 
 - (void)requestPath:(NSString *)path
              method:(NSString *)method
@@ -121,18 +135,17 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 
 #pragma mark - NSURLConnectionDelegate
 
-- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-    
-}
-
 #pragma mark - Authentication
 
 - (void)loginWithUsername:(NSString *)username
                  password:(NSString *)password
                   success:(LHSKipptGenericBlock)success
                   failure:(LHSKipptErrorBlock)failure {
-    NSURLCredential *credential = [NSURLCredential credentialWithUser:username
-                                                             password:password
+    
+    self.password = password;
+    self.userName = username;
+    NSURLCredential *credential = [NSURLCredential credentialWithUser:self.userName
+                                                             password:self.password
                                                           persistence:NSURLCredentialPersistenceForSession];
     
     NSURLProtectionSpace *protectionSpace = [[NSURLProtectionSpace alloc] initWithHost:@"kippt.com"

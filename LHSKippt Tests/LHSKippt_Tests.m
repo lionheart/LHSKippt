@@ -26,7 +26,7 @@
 
 - (void)testExample {
     LHSKipptClient *kippt = [LHSKipptClient sharedClient];
-    [kippt loginWithUsername:@"chrisddm@gmail.com" password:@"12#qwaszx" success:^(id response) {
+    [kippt loginWithUsername:@"chrisddm@gmail.com" password:@"12#Qwaszx" success:^(id response) {
         
         NSString *username = [response objectForKey:@"username"];
         if ([username isEqualToString:@"chrisddm"]) {
@@ -40,7 +40,7 @@
          [self notify:XCTAsyncTestCaseStatusFailed];
     }];
     
-    [self waitForStatus: XCTAsyncTestCaseStatusSucceeded timeout:10];
+    [self waitForStatus: XCTAsyncTestCaseStatusSucceeded timeout:20];
 }
 
 @end
