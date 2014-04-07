@@ -96,7 +96,6 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
     request.HTTPMethod = method;
 
     if ([method isEqualToString:@"POST"] && parameters) {
-//        request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
         NSError *error;
         NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:&error];
         [request setHTTPBody:postData];
@@ -111,6 +110,13 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
         
          if (!error) {
              NSHTTPURLResponse *httpResp = (NSHTTPURLResponse*) response;
+             
+             // Tipically in response to a DELETE
+             if (httpResp.statusCode == 204) {
+                 success(@"DELETE Successful");
+                 return;
+             }
+             
              if (httpResp.statusCode == 200 || httpResp.statusCode == 201) {
                  
                  NSError *jsonError;
@@ -336,6 +342,17 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
               failure:failure];
 }
 
+#pragma mark - Delete a Clip
+-(void) deleteClip: (NSInteger) clipId success:(LHSKipptEmptyBlock)success failure:(LHSKipptErrorBlock)failure {
+    
+    [self requestPath:[NSString stringWithFormat:@"clips/%d/",clipId]
+               method:@"DELETE"
+           parameters:nil
+              success:^(id reponse) {
+                  success();
+              }
+              failure:failure];
+}
 
 - (NSMutableDictionary *)addFilterParamsForFilter:(LHSKipptDataFilters)filters
 {

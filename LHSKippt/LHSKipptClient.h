@@ -79,4 +79,7 @@ typedef NS_OPTIONS(NSUInteger, LHSKipptDataFilters) {
 #pragma mark - Favorite a Clip
 -(void) favoriteAClip: (NSInteger) clipId success:(LHSKipptGenericBlock)success failure:(LHSKipptErrorBlock)failure;
 
+#pragma mark - Delete a Clip
+-(void) deleteClip: (NSInteger) clipId success:(LHSKipptEmptyBlock)success failure:(LHSKipptErrorBlock)failure;
+
 @end

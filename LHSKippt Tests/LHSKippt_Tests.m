@@ -12,7 +12,8 @@
 #import "LHSClip.h"
 
 static NSString* const username = @"chrisddm@gmail.com";
-static NSString* const password =  @"12#Qwaszx";
+static NSString* const password =  @"qwe123";
+static NSInteger const testClipId = 20274442;
 
 @interface LHSKippt_Tests : XCTestCase
 
@@ -94,7 +95,7 @@ static NSString* const password =  @"12#Qwaszx";
     NSLog(@"Running \"%s\"", __PRETTY_FUNCTION__);
     [_kippt loginWithUsername:username password:password success:^(id response) {
         
-        [_kippt favoriteClipsWithFilters:LHSKipptViaFilter|LHSKipptListFilter since:nil url:nil success:^(NSArray *clips) {
+        [_kippt favoriteClipsWithFilters:LHSKipptListFilter since:nil url:nil success:^(NSArray *clips) {
              [self notify:XCTAsyncTestCaseStatusSucceeded];
         } failure:^(NSError *error) {
              [self notify:XCTAsyncTestCaseStatusFailed];
@@ -112,10 +113,10 @@ static NSString* const password =  @"12#Qwaszx";
     NSLog(@"Running \"%s\"", __PRETTY_FUNCTION__);
     [_kippt loginWithUsername:username password:password success:^(id response) {
         
-        [_kippt clipById:11267138 withFilters:LHSKipptMediaFilter|LHSKipptMediaFilter
+        [_kippt clipById:testClipId withFilters:LHSKipptMediaFilter|LHSKipptMediaFilter
             success:^(NSDictionary *clip) {
                 
-                if ([[clip objectForKey:@"id"] integerValue] == 11267138) {
+                if ([[clip objectForKey:@"id"] integerValue] == testClipId) {
                      [self notify:XCTAsyncTestCaseStatusSucceeded];
                 }
                 else {
@@ -158,7 +159,7 @@ static NSString* const password =  @"12#Qwaszx";
     [_kippt loginWithUsername:username password:password success:^(id response) {
         
         
-        LHSClip *clip = [LHSClip clipWithId:20236523];
+        LHSClip *clip = [LHSClip clipWithId:testClipId];
         clip.title = @"Working Title!";
         clip.notes = @"My notes are stored here!";
         clip.url = [NSURL URLWithString:@"www.yahoo.com"];
@@ -213,7 +214,7 @@ static NSString* const password =  @"12#Qwaszx";
     NSLog(@"Running \"%s\"", __PRETTY_FUNCTION__);
     [_kippt loginWithUsername:username password:password success:^(id response) {
         
-       [_kippt favoriteAClip:20236523 success:^(id response) {
+       [_kippt favoriteAClip:testClipId success:^(id response) {
            
            if ([[response objectForKey:@"is_favorite"] boolValue]) {
               [self notify:XCTAsyncTestCaseStatusSucceeded];
@@ -231,6 +232,40 @@ static NSString* const password =  @"12#Qwaszx";
     }];
     
     [self waitForStatus: XCTAsyncTestCaseStatusSucceeded timeout:60];
+}
+
+-(void) testDeleteClip {
+    
+    NSLog(@"Running \"%s\"", __PRETTY_FUNCTION__);
+    [_kippt loginWithUsername:username password:password success:^(id response) {
+        
+        __block NSInteger clipId;
+        
+        //Ok, let's create a new clip, get its clipid, and then delete it.
+        LHSClip *clip = [LHSClip clipWithTitle:@"Working Title!" andNotes:@"My notes are stored here!"];
+        clip.url = [NSURL URLWithString:@"www.google.com"];
+        
+        [_kippt createNewClip:clip success:^(id response) {
+            
+            clipId = [response[@"id"] integerValue];
+            
+            [_kippt deleteClip:clipId success:^{
+                [self notify:XCTAsyncTestCaseStatusSucceeded];
+                
+            } failure:^(NSError *error) {
+                [self notify:XCTAsyncTestCaseStatusFailed];
+            }];
+        }
+          failure:^(NSError *error) {
+              [self notify:XCTAsyncTestCaseStatusFailed];
+          }];
+        
+        
+    } failure:^(NSError *error) {
+        [self notify:XCTAsyncTestCaseStatusFailed];
+    }];
+    
+    [self waitForStatus: XCTAsyncTestCaseStatusSucceeded timeout:90];
     
 }
 
