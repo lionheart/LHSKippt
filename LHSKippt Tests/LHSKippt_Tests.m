@@ -208,4 +208,30 @@ static NSString* const password =  @"12#Qwaszx";
     [self waitForStatus: XCTAsyncTestCaseStatusSucceeded timeout:60];
 }
 
+-(void) testFavoriteAClip {
+    
+    NSLog(@"Running \"%s\"", __PRETTY_FUNCTION__);
+    [_kippt loginWithUsername:username password:password success:^(id response) {
+        
+       [_kippt favoriteAClip:20236523 success:^(id response) {
+           
+           if ([[response objectForKey:@"is_favorite"] boolValue]) {
+              [self notify:XCTAsyncTestCaseStatusSucceeded];
+           }
+           else {
+               [self notify:XCTAsyncTestCaseStatusFailed];
+           }
+           
+       } failure:^(NSError *error) {
+           [self notify:XCTAsyncTestCaseStatusFailed];
+       }];
+        
+    } failure:^(NSError *error) {
+        [self notify:XCTAsyncTestCaseStatusFailed];
+    }];
+    
+    [self waitForStatus: XCTAsyncTestCaseStatusSucceeded timeout:60];
+    
+}
+
 @end

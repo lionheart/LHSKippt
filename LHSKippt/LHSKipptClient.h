@@ -37,13 +37,13 @@ typedef NS_OPTIONS(NSUInteger, LHSKipptDataFilters) {
             success:(LHSKipptGenericBlock)success
             failure:(LHSKipptErrorBlock)failure;
 
-#pragma User log in
+#pragma mark - User log in
 - (void)loginWithUsername:(NSString *)username
                  password:(NSString *)password
                   success:(LHSKipptGenericBlock)success
                   failure:(LHSKipptErrorBlock)failure;
 
-#pragma User clips, both public and private
+#pragma mark - User clips, both public and private
 
 - (void)clipsFeedWithFilters:(LHSKipptDataFilters)filters
                      success:(LHSKipptClipsBlock)success
@@ -55,25 +55,28 @@ typedef NS_OPTIONS(NSUInteger, LHSKipptDataFilters) {
                  success:(LHSKipptClipsBlock)success
                  failure:(LHSKipptErrorBlock)failure;
 
-#pragma Favorite clips
+#pragma mark - Favorite clips
 - (void)favoriteClipsWithFilters:(LHSKipptDataFilters)filters
                            since:(NSDate *)since
                              url:(NSURL *)url
                          success:(LHSKipptClipsBlock)success
                          failure:(LHSKipptErrorBlock)failure;
 
-#pragma fetch clip by its id
+#pragma mark - fetch clip by its id
 -(void) clipById:(NSInteger) clipId  withFilters:(LHSKipptDataFilters)filters
          success:(LHSKipptClipBlock)success failure:(LHSKipptErrorBlock)failure;
 
-#pragma Search a clip by keyword
+#pragma mark - Search a clip by keyword
 -(void) searchByKeyword:(NSString*) keyword withFilters:(LHSKipptDataFilters)filters
                 success:(LHSKipptGenericBlock)success failure:(LHSKipptErrorBlock)failure;
 
-#pragma Modify a clip
+#pragma mark - Modify a clip
 -(void) modifyClip:(LHSClip*) clip success:(LHSKipptGenericBlock)success failure:(LHSKipptErrorBlock)failure;
 
-#pragma Create new clip
+#pragma mark - Create new clip
 -(void) createNewClip:(LHSClip*) clip success:(LHSKipptGenericBlock)success failure:(LHSKipptErrorBlock)failure;
+
+#pragma mark - Favorite a Clip
+-(void) favoriteAClip: (NSInteger) clipId success:(LHSKipptGenericBlock)success failure:(LHSKipptErrorBlock)failure;
 
 @end

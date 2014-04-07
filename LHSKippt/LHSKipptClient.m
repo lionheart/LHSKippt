@@ -95,13 +95,13 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[urlComponents componentsJoinedByString:@""]]];
     request.HTTPMethod = method;
 
-    if ([method isEqualToString:@"POST"]) {
+    if ([method isEqualToString:@"POST"] && parameters) {
 //        request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
         NSError *error;
         NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:&error];
         [request setHTTPBody:postData];
     }
-    if ([method isEqualToString:@"PUT"]) {
+    if ([method isEqualToString:@"PUT"] && parameters) {
         NSError *error;
         NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:&error];
         [request setHTTPBody:postData];
@@ -232,7 +232,7 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
               failure:failure];
 }
 
-#pragma FavoriteClips
+#pragma mark - FavoriteClips
 
 - (void)favoriteClipsWithFilters:(LHSKipptDataFilters)filters
                    since:(NSDate *)since
@@ -259,7 +259,7 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
               failure:failure];
 }
 
-#pragma Get Clip by id
+#pragma mark - Get Clip by id
 -(void) clipById:(NSInteger) clipId  withFilters:(LHSKipptDataFilters)filters
          success:(LHSKipptClipBlock)success failure:(LHSKipptErrorBlock)failure {
     
@@ -274,7 +274,7 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
               failure:failure];
 }
 
-#pragma Search a clip by keyword
+#pragma mark - Search a clip by keyword
 -(void) searchByKeyword:(NSString*) keyword withFilters:(LHSKipptDataFilters)filters
                 success:(LHSKipptGenericBlock)success failure:(LHSKipptErrorBlock)failure {
     
@@ -290,13 +290,12 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
               failure:failure];
 }
 
-#pragma Modify a clip
+#pragma mark - Modify a clip
 -(void) modifyClip:(LHSClip*) clip success:(LHSKipptGenericBlock)success failure:(LHSKipptErrorBlock)failure {
     
     NSMutableDictionary *payload = [NSMutableDictionary dictionary];
     payload[@"title"] = clip.title,
     payload[@"notes"] = clip.notes;
-    payload[@"is_favorite"] = @(clip.isFavorite);
     payload[@"url"] =  [clip.url absoluteString];
     
     [self requestPath:[NSString stringWithFormat:@"clips/%d/",clip.clipId]
@@ -308,6 +307,7 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
               failure:failure];
 }
 
+#pragma mark - Create new clip
 -(void) createNewClip:(LHSClip*) clip success:(LHSKipptGenericBlock)success failure:(LHSKipptErrorBlock)failure {
     
     NSMutableDictionary *payload = [NSMutableDictionary dictionary];
@@ -323,6 +323,19 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
               }
               failure:failure];
 }
+
+#pragma mark - Favorite a Clip
+-(void) favoriteAClip: (NSInteger) clipId success:(LHSKipptGenericBlock)success failure:(LHSKipptErrorBlock)failure {
+    
+    [self requestPath:[NSString stringWithFormat:@"clips/%d/favorite/",clipId]
+               method:@"POST"
+           parameters:nil
+              success:^(NSDictionary *response) {
+                  success(response);
+              }
+              failure:failure];
+}
+
 
 - (NSMutableDictionary *)addFilterParamsForFilter:(LHSKipptDataFilters)filters
 {
