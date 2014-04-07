@@ -7,6 +7,7 @@
 //
 
 #import "LHSKipptClient.h"
+#import "LHSClip.h"
 
 @interface NSDictionary (LHSKipptAdditions)
 
@@ -63,7 +64,6 @@
                                             persistence:NSURLCredentialPersistenceNone];
     completionHandler(NSURLSessionAuthChallengeUseCredential, newCredential);
     
-    NSLog(@"didReceiveChallenge");
 }
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
@@ -74,8 +74,6 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
                                                                 password:self.password
                                                              persistence:NSURLCredentialPersistenceNone];
     completionHandler(NSURLSessionAuthChallengeUseCredential, newCredential);
-    
-    NSLog(@"didReceiveChallenge");
 }
 
 
@@ -89,51 +87,47 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
     [urlComponents addObject:path];
 
     NSString *body = [parameters _queryParametersToString];
-    if (![method isEqualToString:@"POST"] && body) {
+    if ([method isEqualToString:@"GET"] && body) {
+        [urlComponents addObject:@"?"];
         [urlComponents addObject:body];
     }
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[urlComponents componentsJoinedByString:@""]]];
     request.HTTPMethod = method;
 
-    if ([method isEqualToString:@"POST"]) {
+    if ([method isEqualToString:@"POST"] || [method isEqualToString:@"PUT"] ) {
         request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
     }
 
-    NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request
-                                                 completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                                     if (!error) {
-                                                         NSHTTPURLResponse *httpResp = (NSHTTPURLResponse*) response;
-                                                         if (httpResp.statusCode == 200) {
-                                                             // 3
-                                                             NSError *jsonError;
-                                                             
-                                                             // 2
-                                                             NSDictionary *response =
-                                                             [NSJSONSerialization JSONObjectWithData:data
-                                                                                             options:NSJSONReadingAllowFragments                                                                             
-                                                                                               error:&jsonError];
-                                                             if (!jsonError) {
-                                                                 success(response);
-                                                             }
-                                                             else {
-                                                                 failure (jsonError);
-                                                             }
-                                                             
-                                                         } else {
-                                                             // HANDLE BAD RESPONSE //
-                                                             failure(error);
-                                                         }
-                                                     } else {
-                                                         // ALWAYS HANDLE ERRORS :-] //
-                                                         failure(error);
-                                                     }
+    [[self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+         if (!error) {
+             NSHTTPURLResponse *httpResp = (NSHTTPURLResponse*) response;
+             if (httpResp.statusCode == 200) {
+                 
+                 NSError *jsonError;
+                 NSDictionary *response = [NSJSONSerialization JSONObjectWithData:data
+                                                 options:NSJSONReadingAllowFragments error:&jsonError];
+                 if (!jsonError) {
+                     success(response);
+                 }
+                 else {
+                     failure (jsonError);
+                 }
+                 
+             } else {
+                 // HANDLE BAD RESPONSE //
+                 
+                 failure([NSError errorWithDomain:@"Kipp.com" code:httpResp.statusCode
+                                         userInfo:@{@"status code":@(httpResp.statusCode)}]);
+             }
+         } else {
+             // ALWAYS HANDLE ERRORS :-] //
+             failure(error);
+         }
 
-                                                 }];
-    [task resume];
+     }] resume];
 }
-
-#pragma mark - NSURLConnectionDelegate
 
 #pragma mark - Authentication
 
@@ -173,7 +167,37 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
               failure:failure];
 }
 
+#pragma Clips feed
+- (void)clipsFeedWithFilters:(LHSKipptDataFilters)filters
+                 success:(LHSKipptClipsBlock)success
+                 failure:(LHSKipptErrorBlock)failure {
+    
+    NSMutableDictionary *parameters = [self addFilterParamsForFilter:filters];
+    
+    [self requestPath:@"clips/feed/?"
+               method:@"GET"
+           parameters:parameters
+              success:^(id response) {
+                  NSArray *clipsFeed = [response objectForKey:@"objects"];
+                  success(clipsFeed);
+              }
+              failure:failure];
+}
+
 #pragma mark - Clips
+
+- (void)clipsForCurrentUserWithSuccess:(LHSKipptClipsBlock)success
+                               failure:(LHSKipptErrorBlock)failure {
+    [self requestPath:@"clips/"
+               method:@"GET"
+           parameters:nil
+              success:^(id response) {
+                  
+                  NSArray *clips = [response objectForKey:@"objects"];
+                  success(clips);
+              }
+              failure:failure];
+}
 
 - (void)clipsWithFilters:(LHSKipptDataFilters)filters
                    since:(NSDate *)since
@@ -181,6 +205,100 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
                  success:(LHSKipptClipsBlock)success
                  failure:(LHSKipptErrorBlock)failure {
 
+    NSMutableDictionary *parameters = [self addFilterParamsForFilter:filters];
+    
+    if (url) {
+        parameters [@"url"] = [url absoluteString];
+    }
+    if (since) {
+        parameters [@"since"] = @(round([since timeIntervalSince1970]));
+    }
+
+    [self requestPath:@"clips/?"
+               method:@"GET"
+           parameters:parameters
+              success:^(NSDictionary *response) {
+                  NSArray *clips = [response objectForKey:@"objects"];
+                  success(clips);
+              }
+              failure:failure];
+}
+
+#pragma FavoriteClips
+
+- (void)favoriteClipsWithFilters:(LHSKipptDataFilters)filters
+                   since:(NSDate *)since
+                     url:(NSURL *)url
+                 success:(LHSKipptClipsBlock)success
+                 failure:(LHSKipptErrorBlock)failure {
+    
+    NSMutableDictionary *parameters = [self addFilterParamsForFilter:filters];
+    
+    if (url) {
+        parameters [@"url"] = [url absoluteString];
+    }
+    if (since) {
+        parameters [@"since"] = @(round([since timeIntervalSince1970]));
+    }
+    
+    [self requestPath:@"clips/favorites/"
+               method:@"GET"
+           parameters:parameters
+              success:^(NSDictionary *response) {
+                  NSArray *clips = [response objectForKey:@"objects"];
+                  success(clips);
+              }
+              failure:failure];
+}
+
+#pragma Get Clip by id
+-(void) clipById:(NSInteger) clipId  withFilters:(LHSKipptDataFilters)filters
+         success:(LHSKipptClipBlock)success failure:(LHSKipptErrorBlock)failure {
+    
+    NSMutableDictionary *parameters = [self addFilterParamsForFilter:filters];
+    
+    [self requestPath:[NSString stringWithFormat:@"clips/%d",clipId]
+               method:@"GET"
+           parameters:parameters
+              success:^(NSDictionary *response) {
+                  success(response);
+              }
+              failure:failure];
+}
+
+#pragma Search a clip by keyword
+-(void) searchByKeyword:(NSString*) keyword withFilters:(LHSKipptDataFilters)filters
+                success:(LHSKipptGenericBlock)success failure:(LHSKipptErrorBlock)failure {
+    
+    NSMutableDictionary *parameters = [self addFilterParamsForFilter:filters];
+    parameters [@"q"] = keyword;
+    
+    [self requestPath:@"clips/search/"
+               method:@"GET"
+           parameters:parameters
+              success:^(NSArray *response) {
+                  success(response);
+              }
+              failure:failure];
+}
+
+#pragma Modify a clip
+-(void) modifyClip:(LHSClip*) clip withFilters:(LHSKipptDataFilters)filters
+                success:(LHSKipptGenericBlock)success failure:(LHSKipptErrorBlock)failure {
+    
+    NSDictionary *payload = @{@"title":clip.title};
+    
+    [self requestPath:[NSString stringWithFormat:@"clips/%d/",clip.clipId]
+               method:@"PUT"
+           parameters:payload
+              success:^(NSArray *response) {
+                  success(response);
+              }
+              failure:failure];
+}
+
+- (NSMutableDictionary *)addFilterParamsForFilter:(LHSKipptDataFilters)filters
+{
     NSMutableArray *filterComponents = [NSMutableArray array];
     if (filters & LHSKipptListFilter) {
         [filterComponents addObject:@"list"];
@@ -189,59 +307,17 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
     if (filters & LHSKipptViaFilter) {
         [filterComponents addObject:@"via"];
     }
-
+    
     if (filters & LHSKipptMediaFilter) {
         [filterComponents addObject:@"media"];
     }
-
+    
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     if (filterComponents.count > 0) {
         parameters[@"include_data"] = [filterComponents componentsJoinedByString:@","];
     }
-
-    [self requestPath:@"clips/"
-               method:@"GET"
-           parameters:parameters
-              success:^(id JSON) {
-
-              }
-              failure:failure];
-}
-
--(void)retreiveNoteText
-{
-    // 1
-//    NSString *fileApi =
-//    @"https://api-content.dropbox.com/1/files/dropbox";
-//    NSString *escapedPath = [_note.path
-//                             stringByAddingPercentEscapesUsingEncoding:
-//                             NSUTF8StringEncoding];
     
-//    NSString *urlStr = [NSString stringWithFormat: @"%@/%@",
-//                        fileApi,escapedPath];
-    
-    NSURL *url = [NSURL URLWithString: @""];
-    
-    // 2
-    [[_session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        
-        if (!error) {
-            NSHTTPURLResponse *httpResp = (NSHTTPURLResponse*) response;
-            if (httpResp.statusCode == 200) {
-                // 3
-            
-                dispatch_async(dispatch_get_main_queue(), ^{
-
-                });
-                
-            } else {
-                // HANDLE BAD RESPONSE //
-            }
-        } else {
-            // ALWAYS HANDLE ERRORS :-] //
-        }
-        // 4
-    }] resume];
+    return parameters;
 }
 
 @end

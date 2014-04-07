@@ -9,8 +9,14 @@
 #import <XCTest/XCTest.h>
 #import "LHSKipptClient.h"
 #import "XCTestCase+AsyncTesting.h"
+#import "LHSClip.h"
+
+static NSString* const username = @"chrisddm@gmail.com";
+static NSString* const password =  @"12#Qwaszx";
 
 @interface LHSKippt_Tests : XCTestCase
+
+@property (nonatomic,strong) LHSKipptClient *kippt;
 
 @end
 
@@ -18,15 +24,17 @@
 
 - (void)setUp {
     [super setUp];
+    _kippt = [LHSKipptClient sharedClient];
 }
 
 - (void)tearDown {
     [super tearDown];
 }
 
-- (void)testExample {
-    LHSKipptClient *kippt = [LHSKipptClient sharedClient];
-    [kippt loginWithUsername:@"chrisddm@gmail.com" password:@"12#Qwaszx" success:^(id response) {
+- (void)testUserLogin {
+    
+    NSLog(@"Running \"%s\"", __PRETTY_FUNCTION__);
+    [_kippt loginWithUsername:username password:password success:^(id response) {
         
         NSString *username = [response objectForKey:@"username"];
         if ([username isEqualToString:@"chrisddm"]) {
@@ -41,6 +49,129 @@
     }];
     
     [self waitForStatus: XCTAsyncTestCaseStatusSucceeded timeout:20];
+}
+
+-(void) testClipFeeds {
+    
+    NSLog(@"Running \"%s\"", __PRETTY_FUNCTION__);
+    [_kippt loginWithUsername:username password:password success:^(id response) {
+        
+        [_kippt clipsFeedWithFilters:LHSKipptMediaFilter success:^(NSArray *clips) {
+            
+            [self notify:XCTAsyncTestCaseStatusSucceeded];
+            
+        } failure:^(NSError *error) {
+            [self notify:XCTAsyncTestCaseStatusFailed];
+        }];
+        
+    } failure:^(NSError *error) {
+        [self notify:XCTAsyncTestCaseStatusFailed];
+    }];
+    
+    [self waitForStatus: XCTAsyncTestCaseStatusSucceeded timeout:60];
+}
+
+-(void) testClips {
+    
+    NSLog(@"Running \"%s\"", __PRETTY_FUNCTION__);
+    [_kippt loginWithUsername:username password:password success:^(id response) {
+        
+        [_kippt clipsWithFilters:LHSKipptListFilter since:[NSDate date] url:nil success:^(NSArray *clips) {
+            [self notify:XCTAsyncTestCaseStatusSucceeded];
+        } failure:^(NSError *error) {
+            [self notify:XCTAsyncTestCaseStatusFailed];
+        }];
+        
+    } failure:^(NSError *error) {
+        [self notify:XCTAsyncTestCaseStatusFailed];
+    }];
+    
+    [self waitForStatus: XCTAsyncTestCaseStatusSucceeded timeout:60];
+}
+
+-(void) testFavoriteClips {
+    
+    NSLog(@"Running \"%s\"", __PRETTY_FUNCTION__);
+    [_kippt loginWithUsername:username password:password success:^(id response) {
+        
+        [_kippt favoriteClipsWithFilters:LHSKipptViaFilter|LHSKipptListFilter since:nil url:nil success:^(NSArray *clips) {
+             [self notify:XCTAsyncTestCaseStatusSucceeded];
+        } failure:^(NSError *error) {
+             [self notify:XCTAsyncTestCaseStatusFailed];
+        }];
+        
+    } failure:^(NSError *error) {
+        [self notify:XCTAsyncTestCaseStatusFailed];
+    }];
+    
+    [self waitForStatus: XCTAsyncTestCaseStatusSucceeded timeout:60];
+}
+
+-(void) testClipById {
+    
+    NSLog(@"Running \"%s\"", __PRETTY_FUNCTION__);
+    [_kippt loginWithUsername:username password:password success:^(id response) {
+        
+        [_kippt clipById:11267138 withFilters:LHSKipptMediaFilter|LHSKipptMediaFilter
+            success:^(NSDictionary *clip) {
+                
+                if ([[clip objectForKey:@"id"] integerValue] == 11267138) {
+                     [self notify:XCTAsyncTestCaseStatusSucceeded];
+                }
+                else {
+                     [self notify:XCTAsyncTestCaseStatusFailed];
+                }
+               
+            } failure:^(NSError *error) {
+                [self notify:XCTAsyncTestCaseStatusFailed];
+            }];
+        
+    } failure:^(NSError *error) {
+        [self notify:XCTAsyncTestCaseStatusFailed];
+    }];
+    
+    [self waitForStatus: XCTAsyncTestCaseStatusSucceeded timeout:60];
+}
+
+-(void) testSearchClips {
+    
+    NSLog(@"Running \"%s\"", __PRETTY_FUNCTION__);
+    [_kippt loginWithUsername:username password:password success:^(id response) {
+        
+        [_kippt searchByKeyword:@"Kippt" withFilters:LHSKipptListFilter success:^(NSDictionary *clips) {
+            [self notify:XCTAsyncTestCaseStatusSucceeded];
+        } failure:^(NSError *error) {
+            [self notify:XCTAsyncTestCaseStatusFailed];
+        }];
+         
+        
+    } failure:^(NSError *error) {
+        [self notify:XCTAsyncTestCaseStatusFailed];
+    }];
+    
+    [self waitForStatus: XCTAsyncTestCaseStatusSucceeded timeout:60];
+}
+
+-(void) testClipModification {
+    
+    NSLog(@"Running \"%s\"", __PRETTY_FUNCTION__);
+    [_kippt loginWithUsername:username password:password success:^(id response) {
+        
+        
+        LHSClip *clip = [LHSClip clipWithId:176021];
+        clip.title = @"Changed Title!";
+        
+        [_kippt modifyClip:clip withFilters:LHSKipptListFilter success:^(NSDictionary *clip) {
+                 [self notify:XCTAsyncTestCaseStatusSucceeded];
+            } failure:^(NSError *error) {
+                 [self notify:XCTAsyncTestCaseStatusFailed];
+            }];
+    
+    } failure:^(NSError *error) {
+        [self notify:XCTAsyncTestCaseStatusFailed];
+    }];
+    
+    [self waitForStatus: XCTAsyncTestCaseStatusSucceeded timeout:60];
 }
 
 @end

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		31830F8718EF584F0046958B /* XCTestCase+AsyncTesting.m in Sources */ = {isa = PBXBuildFile; fileRef = 31830F8618EF584F0046958B /* XCTestCase+AsyncTesting.m */; };
+		31CC715718F22F9F009BCEF9 /* LHSClip.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CC715618F22F9F009BCEF9 /* LHSClip.m */; };
+		31CC715818F22F9F009BCEF9 /* LHSClip.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CC715618F22F9F009BCEF9 /* LHSClip.m */; };
 		371C43AB18DD39F100BB220C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371C43AA18DD39F100BB220C /* Foundation.framework */; };
 		371C43B018DD39F100BB220C /* LHSKipptClient.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 371C43AF18DD39F100BB220C /* LHSKipptClient.h */; };
 		371C43B218DD39F100BB220C /* LHSKipptClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 371C43B118DD39F100BB220C /* LHSKipptClient.m */; };
@@ -45,6 +47,8 @@
 /* Begin PBXFileReference section */
 		31830F8518EF584F0046958B /* XCTestCase+AsyncTesting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCTestCase+AsyncTesting.h"; sourceTree = "<group>"; };
 		31830F8618EF584F0046958B /* XCTestCase+AsyncTesting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCTestCase+AsyncTesting.m"; sourceTree = "<group>"; };
+		31CC715518F22F9F009BCEF9 /* LHSClip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHSClip.h; sourceTree = "<group>"; };
+		31CC715618F22F9F009BCEF9 /* LHSClip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHSClip.m; sourceTree = "<group>"; };
 		371C43A718DD39F100BB220C /* libLHSKippt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLHSKippt.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		371C43AA18DD39F100BB220C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		371C43AE18DD39F100BB220C /* LHSKippt-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LHSKippt-Prefix.pch"; sourceTree = "<group>"; };
@@ -116,6 +120,8 @@
 				371C43AF18DD39F100BB220C /* LHSKipptClient.h */,
 				371C43B118DD39F100BB220C /* LHSKipptClient.m */,
 				371C43AD18DD39F100BB220C /* Supporting Files */,
+				31CC715518F22F9F009BCEF9 /* LHSClip.h */,
+				31CC715618F22F9F009BCEF9 /* LHSClip.m */,
 			);
 			path = LHSKippt;
 			sourceTree = "<group>";
@@ -237,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				371C43B218DD39F100BB220C /* LHSKipptClient.m in Sources */,
+				31CC715718F22F9F009BCEF9 /* LHSClip.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +254,7 @@
 				371C43DF18DDD77F00BB220C /* LHSKippt_Tests.m in Sources */,
 				31830F8718EF584F0046958B /* XCTestCase+AsyncTesting.m in Sources */,
 				371C43E618DDD8F400BB220C /* LHSKipptClient.m in Sources */,
+				31CC715818F22F9F009BCEF9 /* LHSClip.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
