@@ -71,7 +71,6 @@ typedef NS_OPTIONS(NSUInteger, LHSKipptDataFilters) {
                 success:(LHSKipptGenericBlock)success failure:(LHSKipptErrorBlock)failure;
 
 #pragma Modify a clip
--(void) modifyClip:(LHSClip*) clip withFilters:(LHSKipptDataFilters)filters
-           success:(LHSKipptGenericBlock)success failure:(LHSKipptErrorBlock)failure;
+-(void) modifyClip:(LHSClip*) clip success:(LHSKipptGenericBlock)success failure:(LHSKipptErrorBlock)failure;
 
 @end

@@ -23,6 +23,7 @@ typedef NS_ENUM(NSUInteger, LHSClipType) {
 @property (nonatomic,strong) NSURL *url;
 @property (nonatomic,strong,readonly) NSString *user;
 @property (nonatomic,strong) NSString *title;
+@property (nonatomic,strong) NSString *notes;
 @property (nonatomic,strong,readonly) NSArray *comments;
 @property (nonatomic,strong,readonly) NSArray *likes;
 @property (nonatomic,strong,readonly) NSArray *saves;

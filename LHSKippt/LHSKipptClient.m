@@ -95,8 +95,13 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[urlComponents componentsJoinedByString:@""]]];
     request.HTTPMethod = method;
 
-    if ([method isEqualToString:@"POST"] || [method isEqualToString:@"PUT"] ) {
+    if ([method isEqualToString:@"POST"]) {
         request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
+    }
+    if ([method isEqualToString:@"PUT"]) {
+        NSError *error;
+        NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:&error];
+        [request setHTTPBody:postData];
     }
 
     [[self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -283,10 +288,12 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 }
 
 #pragma Modify a clip
--(void) modifyClip:(LHSClip*) clip withFilters:(LHSKipptDataFilters)filters
-                success:(LHSKipptGenericBlock)success failure:(LHSKipptErrorBlock)failure {
+-(void) modifyClip:(LHSClip*) clip success:(LHSKipptGenericBlock)success failure:(LHSKipptErrorBlock)failure {
     
-    NSDictionary *payload = @{@"title":clip.title};
+    NSMutableDictionary *payload = [NSMutableDictionary dictionary];
+    payload[@"title"] = clip.title,
+    payload[@"notes"] = clip.notes;
+    payload[@"is_favorite"] = @(clip.isFavorite);
     
     [self requestPath:[NSString stringWithFormat:@"clips/%d/",clip.clipId]
                method:@"PUT"

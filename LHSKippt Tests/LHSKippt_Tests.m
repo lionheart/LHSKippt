@@ -158,12 +158,22 @@ static NSString* const password =  @"12#Qwaszx";
     [_kippt loginWithUsername:username password:password success:^(id response) {
         
         
-        LHSClip *clip = [LHSClip clipWithId:176021];
-        clip.title = @"Changed Title!";
+        LHSClip *clip = [LHSClip clipWithId:20236523];
+        clip.title = @"Working Title!";
+        clip.notes = @"My notes are stored here!";
         
-        [_kippt modifyClip:clip withFilters:LHSKipptListFilter success:^(NSDictionary *clip) {
-                 [self notify:XCTAsyncTestCaseStatusSucceeded];
-            } failure:^(NSError *error) {
+        [_kippt modifyClip:clip success:^(NSDictionary *clip) {
+            
+                if ([clip[@"notes"] isEqualToString:@"My notes are stored here!"]) {
+                    
+                     [self notify:XCTAsyncTestCaseStatusSucceeded];
+                }
+                else
+                {
+                    [self notify:XCTAsyncTestCaseStatusFailed];
+                }
+            }
+             failure:^(NSError *error) {
                  [self notify:XCTAsyncTestCaseStatusFailed];
             }];
     
