@@ -34,5 +34,6 @@ typedef NS_ENUM(NSUInteger, LHSClipType) {
 @property (nonatomic,strong) NSURL *resource_uri;
 
 +(instancetype) clipWithId:(NSInteger) clipId;
++(instancetype) clipWithTitle:(NSString*) title andNotes:(NSString*) notes;
 
 @end

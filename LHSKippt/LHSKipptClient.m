@@ -96,7 +96,10 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
     request.HTTPMethod = method;
 
     if ([method isEqualToString:@"POST"]) {
-        request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
+//        request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *error;
+        NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:&error];
+        [request setHTTPBody:postData];
     }
     if ([method isEqualToString:@"PUT"]) {
         NSError *error;
@@ -108,7 +111,7 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
         
          if (!error) {
              NSHTTPURLResponse *httpResp = (NSHTTPURLResponse*) response;
-             if (httpResp.statusCode == 200) {
+             if (httpResp.statusCode == 200 || httpResp.statusCode == 201) {
                  
                  NSError *jsonError;
                  NSDictionary *response = [NSJSONSerialization JSONObjectWithData:data
@@ -294,11 +297,28 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
     payload[@"title"] = clip.title,
     payload[@"notes"] = clip.notes;
     payload[@"is_favorite"] = @(clip.isFavorite);
+    payload[@"url"] =  [clip.url absoluteString];
     
     [self requestPath:[NSString stringWithFormat:@"clips/%d/",clip.clipId]
                method:@"PUT"
            parameters:payload
               success:^(NSArray *response) {
+                  success(response);
+              }
+              failure:failure];
+}
+
+-(void) createNewClip:(LHSClip*) clip success:(LHSKipptGenericBlock)success failure:(LHSKipptErrorBlock)failure {
+    
+    NSMutableDictionary *payload = [NSMutableDictionary dictionary];
+    payload[@"title"] = clip.title,
+    payload[@"notes"] = clip.notes;
+    payload[@"url"] =  [clip.url absoluteString];
+    
+    [self requestPath:@"clips/"
+               method:@"POST"
+           parameters:payload
+              success:^(NSDictionary *response) {
                   success(response);
               }
               failure:failure];

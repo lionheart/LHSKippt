@@ -21,10 +21,23 @@
     return [[LHSClip alloc] initWithId:clipId];
 }
 
++(instancetype) clipWithTitle:(NSString*) title andNotes:(NSString*) notes {
+    return [[LHSClip alloc] initWithTitle:title andNotes:notes];
+}
+
 -(instancetype) initWithId:(NSInteger) clipId {
     self = [super init];
     if (self) {
         _clipId = clipId;
+    }
+    return self;
+}
+
+-(instancetype) initWithTitle:(NSString*) title andNotes:(NSString*) notes {
+    self = [super init];
+    if (self) {
+        self.title = title;
+        self.notes = notes;
     }
     return self;
 }

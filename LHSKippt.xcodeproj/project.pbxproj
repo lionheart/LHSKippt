@@ -15,7 +15,6 @@
 		371C43B218DD39F100BB220C /* LHSKipptClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 371C43B118DD39F100BB220C /* LHSKipptClient.m */; };
 		371C43D518DDD77F00BB220C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371C43B818DD39F200BB220C /* XCTest.framework */; };
 		371C43D618DDD77F00BB220C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371C43AA18DD39F100BB220C /* Foundation.framework */; };
-		371C43D718DDD77F00BB220C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371C43BB18DD39F200BB220C /* UIKit.framework */; };
 		371C43DD18DDD77F00BB220C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 371C43DB18DDD77F00BB220C /* InfoPlist.strings */; };
 		371C43DF18DDD77F00BB220C /* LHSKippt_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 371C43DE18DDD77F00BB220C /* LHSKippt_Tests.m */; };
 		371C43E618DDD8F400BB220C /* LHSKipptClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 371C43B118DD39F100BB220C /* LHSKipptClient.m */; };
@@ -55,7 +54,6 @@
 		371C43AF18DD39F100BB220C /* LHSKipptClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHSKipptClient.h; sourceTree = "<group>"; };
 		371C43B118DD39F100BB220C /* LHSKipptClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHSKipptClient.m; sourceTree = "<group>"; };
 		371C43B818DD39F200BB220C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		371C43BB18DD39F200BB220C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		371C43D418DDD77E00BB220C /* LHSKippt Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LHSKippt Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		371C43DA18DDD77F00BB220C /* LHSKippt Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LHSKippt Tests-Info.plist"; sourceTree = "<group>"; };
 		371C43DC18DDD77F00BB220C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -77,7 +75,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				371C43D518DDD77F00BB220C /* XCTest.framework in Frameworks */,
-				371C43D718DDD77F00BB220C /* UIKit.framework in Frameworks */,
 				371C43D618DDD77F00BB220C /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -109,7 +106,6 @@
 			children = (
 				371C43AA18DD39F100BB220C /* Foundation.framework */,
 				371C43B818DD39F200BB220C /* XCTest.framework */,
-				371C43BB18DD39F200BB220C /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -354,6 +350,7 @@
 				DSTROOT = /tmp/LHSKippt.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LHSKippt/LHSKippt-Prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -366,6 +363,7 @@
 				DSTROOT = /tmp/LHSKippt.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LHSKippt/LHSKippt-Prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -387,6 +385,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "LHSKippt Tests/LHSKippt Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -403,6 +402,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LHSKippt Tests/LHSKippt Tests-Prefix.pch";
 				INFOPLIST_FILE = "LHSKippt Tests/LHSKippt Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};

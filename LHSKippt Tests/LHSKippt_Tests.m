@@ -161,6 +161,7 @@ static NSString* const password =  @"12#Qwaszx";
         LHSClip *clip = [LHSClip clipWithId:20236523];
         clip.title = @"Working Title!";
         clip.notes = @"My notes are stored here!";
+        clip.url = [NSURL URLWithString:@"www.yahoo.com"];
         
         [_kippt modifyClip:clip success:^(NSDictionary *clip) {
             
@@ -177,6 +178,29 @@ static NSString* const password =  @"12#Qwaszx";
                  [self notify:XCTAsyncTestCaseStatusFailed];
             }];
     
+    } failure:^(NSError *error) {
+        [self notify:XCTAsyncTestCaseStatusFailed];
+    }];
+    
+    [self waitForStatus: XCTAsyncTestCaseStatusSucceeded timeout:60];
+}
+
+-(void) testCreateNewClip {
+    
+    NSLog(@"Running \"%s\"", __PRETTY_FUNCTION__);
+    [_kippt loginWithUsername:username password:password success:^(id response) {
+        
+        
+        LHSClip *clip = [LHSClip clipWithTitle:@"Working Title!" andNotes:@"My notes are stored here!"];
+        clip.url = [NSURL URLWithString:@"www.google.com"];
+        
+            [_kippt createNewClip:clip success:^(id response) {
+                [self notify:XCTAsyncTestCaseStatusSucceeded];
+            }
+           failure:^(NSError *error) {
+               [self notify:XCTAsyncTestCaseStatusFailed];
+           }];
+        
     } failure:^(NSError *error) {
         [self notify:XCTAsyncTestCaseStatusFailed];
     }];
