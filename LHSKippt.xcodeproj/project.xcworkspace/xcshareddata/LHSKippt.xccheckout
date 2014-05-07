@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>0A31886D-30F2-42CA-AB1B-C8775D337355</string>
+	<string>CAADD7D9-64B1-410A-9969-2CF4EAA5CAA5</string>
 	<key>IDESourceControlProjectName</key>
 	<string>LHSKippt</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>9EA42CCB-0191-4B18-8516-21FDBC546AB6</key>
-		<string>lionheart:LHSKippt</string>
+		<key>5B060D33-2772-4CC6-9091-95635A75BFB2</key>
+		<string>https://github.com/lionheart/LHSKippt.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>LHSKippt.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>9EA42CCB-0191-4B18-8516-21FDBC546AB6</key>
+		<key>5B060D33-2772-4CC6-9091-95635A75BFB2</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>lionheart:LHSKippt</string>
+	<string>https://github.com/lionheart/LHSKippt.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>9EA42CCB-0191-4B18-8516-21FDBC546AB6</string>
+	<string>5B060D33-2772-4CC6-9091-95635A75BFB2</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>9EA42CCB-0191-4B18-8516-21FDBC546AB6</string>
+			<string>5B060D33-2772-4CC6-9091-95635A75BFB2</string>
 			<key>IDESourceControlWCCName</key>
 			<string>LHSKippt</string>
 		</dict>

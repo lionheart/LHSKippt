@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31830F8718EF584F0046958B /* XCTestCase+AsyncTesting.m in Sources */ = {isa = PBXBuildFile; fileRef = 31830F8618EF584F0046958B /* XCTestCase+AsyncTesting.m */; };
+		31CC715718F22F9F009BCEF9 /* LHSClip.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CC715618F22F9F009BCEF9 /* LHSClip.m */; };
+		31CC715818F22F9F009BCEF9 /* LHSClip.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CC715618F22F9F009BCEF9 /* LHSClip.m */; };
 		371C43AB18DD39F100BB220C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371C43AA18DD39F100BB220C /* Foundation.framework */; };
 		371C43B018DD39F100BB220C /* LHSKipptClient.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 371C43AF18DD39F100BB220C /* LHSKipptClient.h */; };
 		371C43B218DD39F100BB220C /* LHSKipptClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 371C43B118DD39F100BB220C /* LHSKipptClient.m */; };
 		371C43D518DDD77F00BB220C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371C43B818DD39F200BB220C /* XCTest.framework */; };
 		371C43D618DDD77F00BB220C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371C43AA18DD39F100BB220C /* Foundation.framework */; };
-		371C43D718DDD77F00BB220C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371C43BB18DD39F200BB220C /* UIKit.framework */; };
 		371C43DD18DDD77F00BB220C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 371C43DB18DDD77F00BB220C /* InfoPlist.strings */; };
 		371C43DF18DDD77F00BB220C /* LHSKippt_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 371C43DE18DDD77F00BB220C /* LHSKippt_Tests.m */; };
 		371C43E618DDD8F400BB220C /* LHSKipptClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 371C43B118DD39F100BB220C /* LHSKipptClient.m */; };
@@ -42,13 +44,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		31830F8518EF584F0046958B /* XCTestCase+AsyncTesting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCTestCase+AsyncTesting.h"; sourceTree = "<group>"; };
+		31830F8618EF584F0046958B /* XCTestCase+AsyncTesting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCTestCase+AsyncTesting.m"; sourceTree = "<group>"; };
+		31CC715518F22F9F009BCEF9 /* LHSClip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHSClip.h; sourceTree = "<group>"; };
+		31CC715618F22F9F009BCEF9 /* LHSClip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHSClip.m; sourceTree = "<group>"; };
 		371C43A718DD39F100BB220C /* libLHSKippt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLHSKippt.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		371C43AA18DD39F100BB220C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		371C43AE18DD39F100BB220C /* LHSKippt-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LHSKippt-Prefix.pch"; sourceTree = "<group>"; };
 		371C43AF18DD39F100BB220C /* LHSKipptClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHSKipptClient.h; sourceTree = "<group>"; };
 		371C43B118DD39F100BB220C /* LHSKipptClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHSKipptClient.m; sourceTree = "<group>"; };
 		371C43B818DD39F200BB220C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		371C43BB18DD39F200BB220C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		371C43D418DDD77E00BB220C /* LHSKippt Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LHSKippt Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		371C43DA18DDD77F00BB220C /* LHSKippt Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LHSKippt Tests-Info.plist"; sourceTree = "<group>"; };
 		371C43DC18DDD77F00BB220C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -70,7 +75,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				371C43D518DDD77F00BB220C /* XCTest.framework in Frameworks */,
-				371C43D718DDD77F00BB220C /* UIKit.framework in Frameworks */,
 				371C43D618DDD77F00BB220C /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,7 +106,6 @@
 			children = (
 				371C43AA18DD39F100BB220C /* Foundation.framework */,
 				371C43B818DD39F200BB220C /* XCTest.framework */,
-				371C43BB18DD39F200BB220C /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -113,6 +116,8 @@
 				371C43AF18DD39F100BB220C /* LHSKipptClient.h */,
 				371C43B118DD39F100BB220C /* LHSKipptClient.m */,
 				371C43AD18DD39F100BB220C /* Supporting Files */,
+				31CC715518F22F9F009BCEF9 /* LHSClip.h */,
+				31CC715618F22F9F009BCEF9 /* LHSClip.m */,
 			);
 			path = LHSKippt;
 			sourceTree = "<group>";
@@ -128,6 +133,8 @@
 		371C43D818DDD77F00BB220C /* LHSKippt Tests */ = {
 			isa = PBXGroup;
 			children = (
+				31830F8518EF584F0046958B /* XCTestCase+AsyncTesting.h */,
+				31830F8618EF584F0046958B /* XCTestCase+AsyncTesting.m */,
 				371C43DE18DDD77F00BB220C /* LHSKippt_Tests.m */,
 				371C43D918DDD77F00BB220C /* Supporting Files */,
 			);
@@ -232,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				371C43B218DD39F100BB220C /* LHSKipptClient.m in Sources */,
+				31CC715718F22F9F009BCEF9 /* LHSClip.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,7 +248,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				371C43DF18DDD77F00BB220C /* LHSKippt_Tests.m in Sources */,
+				31830F8718EF584F0046958B /* XCTestCase+AsyncTesting.m in Sources */,
 				371C43E618DDD8F400BB220C /* LHSKipptClient.m in Sources */,
+				31CC715818F22F9F009BCEF9 /* LHSClip.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +350,7 @@
 				DSTROOT = /tmp/LHSKippt.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LHSKippt/LHSKippt-Prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -352,6 +363,7 @@
 				DSTROOT = /tmp/LHSKippt.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LHSKippt/LHSKippt-Prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -373,6 +385,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "LHSKippt Tests/LHSKippt Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -389,6 +402,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LHSKippt Tests/LHSKippt Tests-Prefix.pch";
 				INFOPLIST_FILE = "LHSKippt Tests/LHSKippt Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -413,6 +427,7 @@
 				371C43CC18DD39F200BB220C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		371C43E318DDD77F00BB220C /* Build configuration list for PBXNativeTarget "LHSKippt Tests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +436,7 @@
 				371C43E518DDD77F00BB220C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
